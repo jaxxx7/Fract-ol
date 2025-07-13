@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:24:10 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/03 13:08:12 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/12 15:11:36 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <string.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <stdio.h>
 # include <limits.h>
 

@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:11:06 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/08 17:56:17 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/13 16:29:03 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,44 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	all_hooks(t_data img, void *mlx_win)
+int	close(void *param)
 {
-	mlx_hook(mlx_win,);
+	t_data *img;
+	
+	img = (t_data *)param;
+	mlx_destroy_window(img->mlx, img->mlx_win);
+	exit(0);
 }
+
 
 int main(void)
 {
-	t_data img;
-	void *mlx;
-	void *mlx_win;
-	int x;
-	int y;
+	t_data	img;
+	int	x;
+	int	y;
+	int	color;
 
 	y = 0;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	img.mlx = mlx_init();
+	img.mlx_win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "fractol");
+	img.img = mlx_new_image(img.mlx, WIDTH, HEIGHT);
+	if (!img.mlx || !img.mlx_win)
+		return (1);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								 &img.endian);
-	while (y < 1080)
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < 1920)
+		while (x < WIDTH)
 		{
-			my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+			color = handle_pixel(x, y);
+			my_mlx_pixel_put(&img, x, y, color);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-	all_hooks(img, mlx_win);
+	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+	mlx_key_hook(img.mlx_win, key_hook, &img);
+	mlx_mouse_hook(img.mlx_win, mouse_hook, &img);
+	mlx_loop(img.mlx);
 }
