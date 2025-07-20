@@ -3,8 +3,8 @@ NAME = fractol
 
 # Compilateur et flags
 CC = gcc
-CFLAGS  = -Wall -Wextra -Werror -Iinclude -Imlx_linux
-LDFLAGS = -Lmlx_linux -lmlx -lXext -lX11 -lm -lbsd
+CFLAGS  = -Wall -Wextra -Werror -Iinclude -Imlx_linux -Iminilibx-linux
+LDFLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
 SRC_DIR = src
 SRC =	$(SRC_DIR)/check_input.c \
