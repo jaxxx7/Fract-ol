@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:36:15 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/20 12:56:44 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/26 17:47:50 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct	s_data {
 	int		endian;
 	void	*mlx;
 	void	*mlx_win;
+	double	re_min;
+	double	re_max;
+	double	im_min;
+	double	im_max;
+	double	zoom_factor;
+	int 	name;
 }				t_data;
 
 typedef struct	s_complex
@@ -42,18 +48,20 @@ typedef struct	s_complex
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			close_window(void *param);
 int			name_check(char *name);
+int			get_fractal_number(char *name);
 int			main(int argc, char **argv);
 // hooks.c
 int			key_hook(int keycode, t_data *img);
 int			mouse_hook(int button, int x, int y, void *param);
 // handle_pixel.c
-int			handle_pixel(int x, int y, char *name);
+int			handle_pixel(int x, int y, int name, t_data *img);
 int			coloration(int i);
 int			point_iteration(t_complex c, int number);
-t_complex	point_transformation(int x, int y, int number);
+t_complex	point_transformation(int x, int y, t_data *img);
 // init.c
 void		z_init(t_complex *z, t_complex *c, int number);
-void		init_plan(double *re_min, double *re_max, double *im_min, double *im_max, int number);
+void		init_plan(t_data *img, int fractal);
+int			redraw(t_data *img);
 // utils.c
 int			ft_strcmp(char *s1, char *s2);
 void		print_usage(void);

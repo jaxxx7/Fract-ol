@@ -7,14 +7,11 @@ CFLAGS  = -Wall -Wextra -Werror -Iinclude -Imlx_linux -Iminilibx-linux
 LDFLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
 
 SRC_DIR = src
-SRC =	$(SRC_DIR)/check_input.c \
-		$(SRC_DIR)/init_stack.c \
-		$(SRC_DIR)/operations.c \
-		$(SRC_DIR)/push_swap.c \
-		$(SRC_DIR)/set_index.c \
-		$(SRC_DIR)/sort_stack.c \
+SRC =	$(SRC_DIR)/fractol.c \
+		$(SRC_DIR)/handle_pixel.c \
+		$(SRC_DIR)/hooks.c \
+		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/utils.c \
-		$(SRC_DIR)/free_stack.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,13 +6,13 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 20:35:58 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/20 13:08:57 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/26 17:50:13 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex	point_transformation(int x, int y, int number)
+t_complex	point_transformation(int x, int y, t_data *img)
 {
 	t_complex	c;
 	double		re_min;
@@ -20,9 +20,8 @@ t_complex	point_transformation(int x, int y, int number)
 	double		im_min;
 	double		im_max;
 
-	init_plan(&re_min, &re_max, &im_min, &im_max, number);
-	c.re = re_min + ((double)x * (re_max - re_min) / WIDTH);
-	c.im = im_max - ((double)y * (im_max - im_min) / HEIGHT);
+	c.re = img->re_min + ((double)x * (img->re_max - img->re_min) / WIDTH);
+	c.im = img->im_max - ((double)y * (img->im_max - img->im_min) / HEIGHT);
 	return (c);
 }
 
@@ -69,22 +68,15 @@ int	coloration(int i)
 	return (color);
 }
 
-int	handle_pixel(int x, int y, char *name)
+int	handle_pixel(int x, int y, int name, t_data *img)
 {
 	t_complex	c;
 	int			i;
 	int			color;
-	int			number;
 
-	number = 1;
-	if (ft_strcmp(name, "mandelbrot") == 0)
-		number = 1;
-	else if (ft_strcmp(name, "julia") == 0)
-		number = 2;
-	else if (ft_strcmp(name, "burning-ship") == 0)
-		number = 3;
-	c = point_transformation(x, y, number);
-	i = point_iteration(c, number);
+	img->zoom_factor = 1.2;
+	c = point_transformation(x, y, img);
+	i = point_iteration(c, name);
 	color = coloration(i);
 	return (color);
 }

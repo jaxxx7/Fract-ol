@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:11:06 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/20 13:08:26 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/26 17:47:56 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ int	name_check(char *name)
 	return (0);
 }
 
+int	get_fractal_number(char *name)
+{
+	if (ft_strcmp(name, "mandelbrot") == 0)
+		return (1);
+	else if (ft_strcmp(name, "julia") == 0)
+		return (2);
+	else if (ft_strcmp(name, "burning-ship") == 0)
+		return (3);
+	else
+		return (0); // 0 si le nom n’est pas reconnu
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	img;
@@ -49,6 +61,8 @@ int	main(int argc, char **argv)
 
 	if (argc == 2 && name_check(argv[1]))
 	{
+		img.name = get_fractal_number(argv[1]);
+		init_plan(&img, img.name);
 		y = 0;
 		img.mlx = mlx_init();
 		img.mlx_win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "fractol");
@@ -62,7 +76,7 @@ int	main(int argc, char **argv)
 			x = 0;
 			while (x < WIDTH)
 			{
-				color = handle_pixel(x, y, argv[1]);
+				color = handle_pixel(x, y, img.name, &img);
 				my_mlx_pixel_put(&img, x, y, color);
 				x++;
 			}

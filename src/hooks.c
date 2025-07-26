@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 17:46:21 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/20 13:10:11 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/26 17:39:24 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,26 @@ int	key_hook(int keycode, t_data *img)
 int	mouse_hook(int button, int x, int y, void *param)
 {
 	t_data	*img;
+	double	mouse_re;
+	double	mouse_im;
 
 	img = (t_data *)param;
-	if (button == 1)
-		printf("Left click at (%d, %d)\n", x, y);
-	if (button == 2)
-		printf("Right click at (%d, %d)\n", x, y);
-	if (button == 3)
-		printf("Middle click at (%d, %d)\n", x, y);
-	if (button == 4)
-		printf("Scroll up at (%d, %d)\n", x, y);
-	if (button == 5)
-		printf("Scroll down at (%d, %d)\n", x, y);
+	mouse_re = img->re_min + x * (img->re_max - img->re_min) / WIDTH;
+	mouse_im = img->im_max - y * (img->im_max - img->im_min) / HEIGHT;
+	if (button == 4) // zoom in
+	{
+		img->re_min = mouse_re - (mouse_re - img->re_min) / img->zoom_factor;
+		img->re_max = mouse_re + (img->re_max - mouse_re) / img->zoom_factor;
+		img->im_min = mouse_im - (mouse_im - img->im_min) / img->zoom_factor;
+		img->im_max = mouse_im + (img->im_max - mouse_im) / img->zoom_factor;
+	}
+	else if (button == 5) // zoom out
+	{
+		img->re_min = mouse_re - (mouse_re - img->re_min) * img->zoom_factor;
+		img->re_max = mouse_re + (img->re_max - mouse_re) * img->zoom_factor;
+		img->im_min = mouse_im - (mouse_im - img->im_min) * img->zoom_factor;
+		img->im_max = mouse_im + (img->im_max - mouse_im) * img->zoom_factor;
+	}
+	redraw(img);
 	return (0);
 }
