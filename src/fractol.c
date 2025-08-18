@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:11:06 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/26 17:47:56 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/31 14:39:19 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,17 @@ int	get_fractal_number(char *name)
 	else if (ft_strcmp(name, "burning-ship") == 0)
 		return (3);
 	else
-		return (0); // 0 si le nom n’est pas reconnu
+		return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	img;
-	int		x;
-	int		y;
-	int		color;
 
 	if (argc == 2 && name_check(argv[1]))
 	{
 		img.name = get_fractal_number(argv[1]);
 		init_plan(&img, img.name);
-		y = 0;
 		img.mlx = mlx_init();
 		img.mlx_win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "fractol");
 		img.img = mlx_new_image(img.mlx, WIDTH, HEIGHT);
@@ -71,17 +67,7 @@ int	main(int argc, char **argv)
 			return (1);
 		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 				&img.line_length, &img.endian);
-		while (y < HEIGHT)
-		{
-			x = 0;
-			while (x < WIDTH)
-			{
-				color = handle_pixel(x, y, img.name, &img);
-				my_mlx_pixel_put(&img, x, y, color);
-				x++;
-			}
-			y++;
-		}
+		ft_loop(img);
 		mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
 		mlx_key_hook(img.mlx_win, key_hook, &img);
 		mlx_mouse_hook(img.mlx_win, mouse_hook, &img);

@@ -12,6 +12,7 @@ SRC =	$(SRC_DIR)/fractol.c \
 		$(SRC_DIR)/hooks.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/utils.c \
+		$(SRC_DIR)/ft_loop.c 
 
 OBJ = $(SRC:.c=.o)
 
@@ -38,4 +39,4 @@ fclean: clean
 	@$(MAKE) fclean -C $(LIBFT_DIR) > /dev/null
 	@rm -f $(NAME)
 
-re: fclean all%
+re: fclean all

@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:13:23 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/26 17:50:18 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/31 13:35:38 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,22 @@ void	init_plan(t_data *img, int number)
 		img->im_max = 1.5;
 	}
 }
+
 int	redraw(t_data *img)
 {
-	int	x;
-	int	y;
-	int	color;
 
-	y = 0;
-	while (y < HEIGHT)
+	img->y = 0;
+	while (img->y < HEIGHT)
 	{
-		x = 0;
-		while (x < WIDTH)
+		img->x = 0;
+		while (img->x < WIDTH)
 		{
-			// 1️⃣ Calculer la fractale pour ce pixel
-			color = handle_pixel(x, y, img->name, img);
-
-			// 2️⃣ Mettre le pixel dans l'image
-			my_mlx_pixel_put(img, x, y, color);
-
-			x++;
+			img->color = handle_pixel(img->x, img->y, img->name, img);
+			my_mlx_pixel_put(img, img->x, img->y, img->color);
+			img->x++;
 		}
-		y++;
+		img->y++;
 	}
-
-	// 3️⃣ Afficher l'image mise à jour dans la fenêtre
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 	return (0);
 }

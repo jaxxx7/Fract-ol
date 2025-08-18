@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:36:15 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/26 17:47:50 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/31 14:38:49 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ typedef struct	s_data {
 	double	im_min;
 	double	im_max;
 	double	zoom_factor;
-	int 	name;
+	int		name;
+	int		x;
+	int		y;
+	int		color;
 }				t_data;
 
 typedef struct	s_complex
@@ -67,4 +70,7 @@ int			ft_strcmp(char *s1, char *s2);
 void		print_usage(void);
 int			create_trgb(int t, int r, int g, int b);
 double		f_absolute(double number);
+// ft_loop.c
+void		ft_loop(t_data img);
+
 #endif

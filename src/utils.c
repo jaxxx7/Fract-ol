@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:25:44 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/20 13:09:59 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/31 13:02:31 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	print_usage(void)
 	write(1, "Available fractals:\n", 20);
 	write(1, "- mandelbrot\n", 13);
 	write(1, "- julia\n", 8);
+	write(1, "- burning-ship\n", 16);
 	write(1, "Usage: ./fractol <fractal_name>\n", 32);
 }
 

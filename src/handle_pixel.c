@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 20:35:58 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/27 11:16:17 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/07/31 14:41:29 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ t_complex	point_transformation(int x, int y, t_data *img)
 
 	c.re = img->re_min + ((double)x * (img->re_max - img->re_min) / WIDTH);
 	c.im = img->im_max - ((double)y * (img->im_max - img->im_min) / HEIGHT);
+	(void ) re_min;
+	(void ) re_max;
+	(void ) im_min;
+	(void ) im_max;
 	return (c);
 }
 
@@ -72,11 +76,10 @@ int	handle_pixel(int x, int y, int name, t_data *img)
 {
 	t_complex	c;
 	int			i;
-	int			color;
 
 	img->zoom_factor = 1.2;
 	c = point_transformation(x, y, img);
 	i = point_iteration(c, name);
-	color = coloration(i);
-	return (color);
+	img->color = coloration(i);
+	return (img->color);
 }
