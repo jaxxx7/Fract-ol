@@ -6,11 +6,11 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:36:15 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/31 14:38:49 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/08/18 12:07:53 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FRACTOL_H
+#ifndef FRACTOL_H
 # define FRACTOL_H
 
 # include <stdlib.h>
@@ -19,7 +19,8 @@
 # include <unistd.h>
 # include "../minilibx-linux/mlx.h"
 
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -38,15 +39,15 @@ typedef struct	s_data {
 	int		color;
 }				t_data;
 
-typedef struct	s_complex
+typedef struct s_complex
 {
-	double re;
-	double im;
+	double	re;
+	double	im;
 }				t_complex;
 
-#define WIDTH 1920
-#define HEIGHT 1080
-#define MAX_ITER 100
+# define WIDTH 1920
+# define HEIGHT 1080
+# define MAX_ITER 100
 // fractol.c
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			close_window(void *param);

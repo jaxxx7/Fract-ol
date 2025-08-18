@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:13:23 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/31 13:35:38 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/08/18 12:06:04 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	init_plan(t_data *img, int number)
 
 int	redraw(t_data *img)
 {
-
 	img->y = 0;
 	while (img->y < HEIGHT)
 	{
