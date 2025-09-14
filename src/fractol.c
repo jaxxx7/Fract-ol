@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 17:11:06 by mhachem           #+#    #+#             */
-/*   Updated: 2025/07/31 14:39:19 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/09/14 16:56:17 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 			return (1);
 		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 				&img.line_length, &img.endian);
-		ft_loop(img);
+		ft_loop(&img);
 		mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
 		mlx_key_hook(img.mlx_win, key_hook, &img);
 		mlx_mouse_hook(img.mlx_win, mouse_hook, &img);

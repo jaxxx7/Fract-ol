@@ -6,25 +6,37 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:13:23 by mhachem           #+#    #+#             */
-/*   Updated: 2025/08/18 12:06:04 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/09/14 16:49:50 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	z_init(t_complex *z, t_complex *c, int number)
+void z_init(t_complex *z, t_complex *c, double re, double im, int number)
 {
-	if (number == 1 || number == 3)
+	if (!z || !c)
+		return;
+
+	if (number == 1)
 	{
 		z->re = 0;
 		z->im = 0;
+		c->re = re;
+		c->im = im;
 	}
 	else if (number == 2)
 	{
-		z->re = c->re;
-		z->im = c->im;
+		z->re = re;
+		z->im = im;
 		c->re = -0.7;
 		c->im = 0.27015;
+	}
+	else if (number == 3)
+	{
+		z->re = 0;
+		z->im = 0;
+		c->re = re;
+		c->im = im;
 	}
 }
 

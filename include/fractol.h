@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:36:15 by mhachem           #+#    #+#             */
-/*   Updated: 2025/08/18 12:07:53 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/09/14 16:56:07 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int			mouse_hook(int button, int x, int y, void *param);
 // handle_pixel.c
 int			handle_pixel(int x, int y, int name, t_data *img);
 int			coloration(int i);
-int			point_iteration(t_complex c, int number);
+int			point_iteration(t_complex c, int number, double x, double y);
 t_complex	point_transformation(int x, int y, t_data *img);
 // init.c
-void		z_init(t_complex *z, t_complex *c, int number);
+void		z_init(t_complex *z, t_complex *c, double x, double y, int number);
 void		init_plan(t_data *img, int fractal);
 int			redraw(t_data *img);
 // utils.c
@@ -72,6 +72,6 @@ void		print_usage(void);
 int			create_trgb(int t, int r, int g, int b);
 double		f_absolute(double number);
 // ft_loop.c
-void		ft_loop(t_data img);
+void		ft_loop(t_data *img);
 
 #endif
