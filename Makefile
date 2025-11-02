@@ -28,7 +28,7 @@ $(LIBFT):
 	@echo "libft OK"
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 	@echo "fractol OK"
 
 clean:

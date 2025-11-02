@@ -6,7 +6,7 @@
 /*   By: mhachem <mhachem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:36:15 by mhachem           #+#    #+#             */
-/*   Updated: 2025/09/14 16:56:07 by mhachem          ###   ########.fr       */
+/*   Updated: 2025/11/02 13:34:40 by mhachem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdint.h>
 # include <unistd.h>
 # include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 
 typedef struct s_data
 {
@@ -41,8 +42,10 @@ typedef struct s_data
 
 typedef struct s_complex
 {
-	double	re;
-	double	im;
+	double	z_re;
+	double	z_im;
+	double	c_re;
+	double	c_im;
 }				t_complex;
 
 # define WIDTH 1920
@@ -63,14 +66,16 @@ int			coloration(int i);
 int			point_iteration(t_complex c, int number, double x, double y);
 t_complex	point_transformation(int x, int y, t_data *img);
 // init.c
-void		z_init(t_complex *z, t_complex *c, double x, double y, int number);
+void		z_init(t_complex *l, double re, double im, int number);
 void		init_plan(t_data *img, int fractal);
 int			redraw(t_data *img);
+int			init_mlx(t_data *img);
 // utils.c
 int			ft_strcmp(char *s1, char *s2);
 void		print_usage(void);
 int			create_trgb(int t, int r, int g, int b);
 double		f_absolute(double number);
+void		ft_cleanup(t_data *img);
 // ft_loop.c
 void		ft_loop(t_data *img);
 
